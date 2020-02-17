@@ -1,14 +1,10 @@
-/* .navbar{
-    background-color: #d3d3d3;
-    height: 75px;
-} */
-
 .navbar-item {
-    width: 150px;
-    height: 150px;
+    width: 135px;
+    height: 135px;
     background-image: url('/assets/images/hartford.png');
-    float: right;
-    margin-top: -95px;
+    position: absolute;
+    margin-top: -85px;
+    margin-left: 1200px;
   }
   
   h3 {

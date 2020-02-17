@@ -1,0 +1,30 @@
+<div class="container">
+<div class="form-group">
+    <label class="company-name">Company Name:</label>&nbsp;  
+    <select [(ngModel)]="companyName" id="company_name">
+      <option value="0">----------Select----------</option> 
+      <option *ngFor="let company of companies">{{company.companyName}}
+      </option>
+    </select><br/>
+        <button (click)="ExportTOExcel()" class="btn btn-success" style="margin-top: 25px; margin-bottom: -24px;">Export To Excel</button>
+</div>
+    <br/>  
+<div class="table-responsive-lg" #companytable #table>
+    <table id="companies" class="table table-hover table-striped">
+    <thead>
+    <tr>
+    <th>Company Name</th>
+    <th>FDA Warnings</th>
+    <th>FDA Recalls</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let company of companies | companyFilter: companyName">
+    <td>{{company.companyName}}</td>
+    <td>{{company.fdaWarnings}}</td>
+    <td>{{company.fdaRecalls}}</td>
+    </tr>
+    </tbody>
+    </table>
+    </div>
+    </div>

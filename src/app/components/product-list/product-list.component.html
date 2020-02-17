@@ -1,0 +1,42 @@
+<div class="container">
+<div class="form-group" style="margin-top: 25px;">
+    <div class="form-group">
+        <label class="product-name">Product/Device:</label>&nbsp;  
+        <select [(ngModel)]="productName" id="product_name">
+          <option value="0">------Select------</option>    
+          <option *ngFor="let product of products">{{product.productName}}
+          </option>
+        </select>
+    </div>
+    <label for="freeSearch">Free Search:</label>&nbsp;
+    <input type="text" (focus)="resetProductsDropdown()" id="free_search" name="search" [(ngModel)]="search" placeholder="Please Enter Any Search Term"/>
+    <br/>
+        <button (click)="ExportTOExcel()" class="btn btn-success" style="margin-top: 25px;">Export To Excel</button>
+</div>
+<div class="table-responsive-lg" #producttable #table>
+    <table id="products" class="table table-hover table-striped">
+    <thead>
+    <tr>
+    <th scope="col">Product Name(s)</th>
+    <th scope="col">Type</th>
+    <th scope="col">Injuries</th>
+    <th scope="col">Active Trolling Count</th>
+    <th scope="col">Trolling Context</th>
+    <!-- <th scope="col">test</th>
+    <th scope="col">test</th> -->
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of products | productFilter: productName | freeSearchFilter: search">
+    <td>{{product.productName}}</td>
+    <td>{{product.type}}</td>
+    <td>{{product.injuries}}</td>
+    <td>{{product.activeTrollingCount}}</td>
+    <td>{{product.trollingContext}}</td>
+    <!-- <td>{{product.test}}</td>
+    <td>{{product.test}}</td> -->
+    </tr>
+    </tbody>
+    </table>
+    </div>
+</div>
