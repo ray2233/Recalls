@@ -39,4 +39,9 @@ export class CompanyListComponent implements OnInit {
               this.companies = data;    
           });
       }
+  // resetcompaniesDropdown() {
+  //   var DropdownList = (document.getElementById("company_name")) as HTMLSelectElement;
+  //   var SelectedIndex = DropdownList.selectedIndex = 0;
+  //   this.companyName = ''; //reset companies dropdown filter//
+  //   }       
   }

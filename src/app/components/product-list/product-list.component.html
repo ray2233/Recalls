@@ -8,8 +8,11 @@
           </option>
         </select>
     </div>
+    <ng-container *ngIf="( products | freeSearchFilter: search) as result">
     <label for="freeSearch">Free Search:</label>&nbsp;
-    <input type="text" (focus)="resetProductsDropdown()" id="free_search" name="search" [(ngModel)]="search" placeholder="Please Enter Any Search Term"/>
+    <input type="text" (focus)="resetProductsDropdown()" id="free_search" name="search" [(ngModel)]="search" placeholder="Please Enter Any Search Term" autocomplete="off"/>
+    <p *ngIf="result.length === 0">No Match Found</p>  
+    </ng-container>
     <br/>
         <button (click)="ExportTOExcel()" class="btn btn-success" style="margin-top: 25px;">Export To Excel</button>
 </div>

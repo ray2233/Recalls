@@ -5,7 +5,7 @@ import { Pipe, PipeTransform, Injectable } from '@angular/core';
     name: 'freeSearchFilter',
 })
 @Injectable()
-export class FilterPipe implements PipeTransform {
+export class freeSearchFilterPipe implements PipeTransform {
     transform(value:any[],searchString:string ){
 
         if(!searchString){

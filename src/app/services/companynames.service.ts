@@ -6,9 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CompanynamesService {
-
-  setGroupFilter$ = new Subject<any>();
-  getGroupFilter = this.setGroupFilter$.asObservable();
+  
   private servUrl = "http://localhost:4000/companies";
   
   constructor(private http: HttpClient) { }  
