@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="form-group">
+    <input id="companyName" name='selectType' type='checkbox' (change)="showCompanyNameTextbox()">
+    <label for="productName">&nbsp;FDA Orange company Name</label><br/>
+    <!-- <input id="productName" name='selectType' type='checkbox' (change)="showProductNameTextbox()">
+    <label for="productName">&nbsp;Product/Device</label><br/> -->
+    <!-- <input id="freeSearch" name='selectType' type='checkbox' (change)="showFreeSearchTextbox()">
+    <label for="freeSearch">&nbsp;Free Search</label> -->
+  </div>
+<div class="row">
+<div class="col-md-6">
+<ng-container *ngIf="( orangecompanies | fdaOrangeCompanyFilter: companyName) as result">
+<input type="text" [(ngModel)]="companyName" class="form-control" id="company_name" placeholder="Please Enter Company Name"/> 
+<p *ngIf="result.length === 0">No FDA Orange Company Match Found</p>
+</ng-container>
+<!-- <input type="text" formControlName="productName" class="form-control" id="product_name" placeholder="Please Enter Product Name" style="display: none;"/>
+<input type="text"
+formControlName=""
+class="form-control" id="free_search"
+placeholder="Please Enter Search Term" style="display: none;"
+/> -->
+</div>
+</div>
+      <br/>  
+  <div class="table-responsive-lg" #companytable #table>
+      <table id="orange-companies" class="table table-hover table-striped">
+      <thead>
+      <tr>
+      <th>FDA Orange List Company Name</th>
+      <th>FDA Warnings</th>
+      <th>FDA Recalls</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let company of orangecompanies | fdaOrangeCompanyFilter: companyName">
+      <td>{{company.companyName}}</td>
+      <td>{{company.fdaWarnings}}</td>
+      <td>{{company.fdaRecalls}}</td>
+      </tr>
+      </tbody>
+      </table>
+      </div>
+      </div>

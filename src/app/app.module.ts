@@ -13,6 +13,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutes } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FDAOrangeListComponent } from './components/fda-orangecompany-list/fda-orange-company-list.component';
+import { FdaOrangeCompanyPipe } from './pipes/fda-orange-company.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     CompanyListComponent,
     freeSearchFilterPipe,
     CompanyFilterPipe,
-    ProductFilterPipe
+    ProductFilterPipe,
+    FDAOrangeListComponent,
+    FdaOrangeCompanyPipe
   ],
   imports: [
     BrowserModule,
