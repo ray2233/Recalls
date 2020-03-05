@@ -7,11 +7,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class FdaorangelistcompaniesService {
 
-  private servUrl = " http://localhost:3000/orangecompanies";
+  private servUrl = "http://localhost:3000/orangecompanies";
   
   constructor(private http: HttpClient) { }  
       
-  fetchOrangeListCompanies(): Observable<any> {
+  fetchOrangeListCompanies() {
     return this.http.get(this.servUrl);
   }
 }

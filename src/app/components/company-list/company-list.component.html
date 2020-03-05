@@ -19,9 +19,9 @@
     </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let company of companies | companyFilter: companyName">
+    <tr *ngFor="let company of companies | async">
     <td>{{company.companyName}}</td>
-    <td>{{company.fdaWarnings}}</td>
+    <td>{{company.field_company_name_warning_lette}}</td>
     <td>{{company.fdaRecalls}}</td>
     </tr>
     </tbody>

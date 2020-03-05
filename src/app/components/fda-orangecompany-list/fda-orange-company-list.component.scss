@@ -4,10 +4,52 @@
     border: 2px solid #000;
   }
   
-  table {
+table {
     th, td {
       border: 2px solid;
       border-color: #050e17;
       overflow-y: auto;
     }
+  }
+
+  .container {
+    background-color: #fff;
+    overflow: auto;
+  }
+label {
+  font-size: 15px !important;
+}
+
+h5 {
+  color: #3b5a77;
+}
+
+.txtbox {
+  display: block;
+  float: left;
+  height: 32px;
+  width: 447px;
+}
+
+.clear{
+  display: block;
+  background-color: #3b5a77;
+  border-color: #3b5a77;
+  color: #fff;
+  float: left;
+  height: 32px;
+  margin: -0.5px 9px;
+  width: 75px;
+}
+
+#productName {
+    margin-left: 25px;
+  }
+
+#freeSearch {
+    margin-left: 25px;
+  }
+
+ #ten-k {
+    margin-left: 25px;
   }

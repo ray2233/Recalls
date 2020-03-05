@@ -9,7 +9,7 @@ import * as XLSX from 'xlsx';
 })
 export class CompanyListComponent implements OnInit {
   companyName: string;
-  companies: any[] = [];
+  companies;
   @ViewChild('companytable', {}) companytable: ElementRef;  
   title = 'Company Names Excel';  
   //Export table to Excel//  
@@ -28,17 +28,18 @@ export class CompanyListComponent implements OnInit {
   }
 
   ngOnInit () {
-    this.fetchCompanies();
+    //this.fetchCompanies();
+    this.companies = this.companynamesService.fetchCompanies();
   }  
     //fetch company names in HTML table//
-    private fetchCompanies() {
-      this
-          .companynamesService
-          .fetchCompanies()
-          .subscribe((data) => {
-              this.companies = data;    
-          });
-      }
+    //private fetchCompanies() {
+      //this
+         // .companynamesService
+         // .fetchCompanies()
+          //.subscribe((data) => {
+          //    this.companies = data;    
+         // });
+      //}
   // resetcompaniesDropdown() {
   //   var DropdownList = (document.getElementById("company_name")) as HTMLSelectElement;
   //   var SelectedIndex = DropdownList.selectedIndex = 0;

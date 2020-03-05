@@ -1,17 +1,22 @@
 <div class="container">
+  <h5>Active Exposure Search</h5>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
   <div class="form-group">
-    <input id="companyName" name='selectType' type='checkbox' (change)="showCompanyNameTextbox()">
-    <label for="productName">&nbsp;FDA Orange company Name</label><br/>
-    <!-- <input id="productName" name='selectType' type='checkbox' (change)="showProductNameTextbox()">
-    <label for="productName">&nbsp;Product/Device</label><br/> -->
-    <!-- <input id="freeSearch" name='selectType' type='checkbox' (change)="showFreeSearchTextbox()">
-    <label for="freeSearch">&nbsp;Free Search</label> -->
+    <input id="fda-companyName" name='selectType' type='radio' (change)="showCompanyNameTextbox()">
+    <label for="productName">&nbsp;FDA Orange Company</label>
+    <input id="productName" name='selectType' type='radio' (change)="showProductNameTextbox()">
+    <label for="productName">&nbsp;Product</label>
+    <input id="freeSearch" name='selectType' type='radio' (change)="showFreeSearchTextbox()">
+    <label for="freeSearch">&nbsp;Free Search</label>
+    <input id="ten-k" name='selectType' type='radio' (change)="showFreeSearchTextbox()">
+    <label for="ten-k">&nbsp;10K</label>
   </div>
 <div class="row">
 <div class="col-md-6">
-<ng-container *ngIf="( orangecompanies | fdaOrangeCompanyFilter: companyName) as result">
-<input type="text" [(ngModel)]="companyName" class="form-control" id="company_name" placeholder="Please Enter Company Name"/> 
-<p *ngIf="result.length === 0">No FDA Orange Company Match Found</p>
+<ng-container *ngIf="( orangecompanies | async | fdaOrangeCompanyFilter: companyName) as result">
+<input type="text" [(ngModel)]="companyName" class="txtbox" id="company_name" placeholder="Please Enter Company Name"/> 
+<button type="button" class="clear">Clear</button>
+<p *ngIf="result.length === 0">No Orange Company Match Found</p>
 </ng-container>
 <!-- <input type="text" formControlName="productName" class="form-control" id="product_name" placeholder="Please Enter Product Name" style="display: none;"/>
 <input type="text"
@@ -32,10 +37,10 @@ placeholder="Please Enter Search Term" style="display: none;"
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let company of orangecompanies | fdaOrangeCompanyFilter: companyName">
+      <tr *ngFor="let company of orangecompanies | async | fdaOrangeCompanyFilter: companyName">
       <td>{{company.companyName}}</td>
       <td>{{company.fdaWarnings}}</td>
-      <td>{{company.fdaRecalls}}</td>
+      <td>{{company.fdaRecalls}}</td> 
       </tr>
       </tbody>
       </table>

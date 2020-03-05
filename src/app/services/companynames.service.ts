@@ -7,11 +7,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CompanynamesService {
   
-  private servUrl = "http://localhost:4000/companies";
+  private servUrl = "https://www.fda.gov/files/api/datatables/static/warning-letters.json?_=1583261915747";
   
   constructor(private http: HttpClient) { }  
       
-  fetchCompanies(): Observable<any> {
+  fetchCompanies() {
     return this.http.get(this.servUrl);
   }
 }

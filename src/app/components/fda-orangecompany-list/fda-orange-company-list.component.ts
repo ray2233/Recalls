@@ -9,21 +9,21 @@ import * as XLSX from 'xlsx';
 })
 export class FDAOrangeListComponent implements OnInit {
   companyName: string;
-  orangecompanies: any[] = [];
-  constructor(private companynamesService: FdaorangelistcompaniesService) { }
+  orangecompanies;
+  constructor(private fdaorangelistcompaniesService: FdaorangelistcompaniesService) { }
 
   ngOnInit () {
-    this.fetchOrangeListCompanies();
+    this.orangecompanies = this.fdaorangelistcompaniesService.fetchOrangeListCompanies();
   }  
     //fetch company names in HTML table//
-    private fetchOrangeListCompanies() {
-      this
-          .companynamesService
-          .fetchOrangeListCompanies()
-          .subscribe((data) => {
-              this.orangecompanies = data;    
-          });
-      }
+    //private fetchOrangeListCompanies() {
+      //this
+          //.companynamesService
+          //.fetchOrangeListCompanies()
+          //.subscribe((data) => {
+           //   this.orangecompanies = data;    
+          //});
+     // }
 
   // showProductNameTextbox(){
   //   const get_showInput = document.getElementById('productName') as HTMLInputElement;
