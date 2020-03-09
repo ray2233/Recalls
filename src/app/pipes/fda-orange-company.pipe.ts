@@ -8,7 +8,7 @@ export class FdaOrangeCompanyPipe implements PipeTransform {
     if (input) {
         input = input.toLowerCase();
         return value.filter(function (el: any) {
-            return el.companyName.toLowerCase().indexOf(input) > -1;
+            return el.name.toLowerCase().indexOf(input) > -1;
         })
     }
     return value;

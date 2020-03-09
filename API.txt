@@ -1,0 +1,7 @@
+https://www.googleapis.com/customsearch/v1?key=AIzaSyClDJ_EfAcgMGc5v6pHlUI7B5pzvcQyxPY&cx=006958770411929327410:lnqleatynwn&q=talc 
+
+
+
+
+
+https://purplebooksearch.fda.gov/api/v1/products?_=1583520104176      purple book

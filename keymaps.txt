@@ -1,0 +1,6 @@
+<input #box (keyup.enter)="onEnter(box.value)">
+    <p>{{value}}</p>
+
+(keydown.backspace)="onKeydown($event)"
+
+(keydown.backspace)="onKeydown(reset())"

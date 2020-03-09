@@ -1,7 +1,7 @@
 <div class="container">
   <h5>Active Exposure Search</h5>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  <div class="form-group">
+  <!-- <div class="form-group">
     <input id="fda-companyName" name='selectType' type='radio' (change)="showCompanyNameTextbox()">
     <label for="productName">&nbsp;FDA Orange Company</label>
     <input id="productName" name='selectType' type='radio' (change)="showProductNameTextbox()">
@@ -10,14 +10,15 @@
     <label for="freeSearch">&nbsp;Free Search</label>
     <input id="ten-k" name='selectType' type='radio' (change)="showFreeSearchTextbox()">
     <label for="ten-k">&nbsp;10K</label>
-  </div>
+  </div> -->
 <div class="row">
 <div class="col-md-6">
-<ng-container *ngIf="( orangecompanies | async | fdaOrangeCompanyFilter: companyName) as result">
-<input type="text" [(ngModel)]="companyName" class="txtbox" id="company_name" placeholder="Please Enter Company Name"/> 
-<button type="button" class="clear">Clear</button>
-<p *ngIf="result.length === 0">No Orange Company Match Found</p>
+<ng-container>
+<input type="text" (keyup)="searchTerm$.next($event.target.value)" class="txtbox" id="company_name" placeholder="Please Enter Company Name" autocomplete="off"/>
+<p id="not_found" *ngIf="results.length === 0">No FDA Orange Company Match Found</p>
+<button type="button" (click)="resetList()" class="clear">Clear</button>
 </ng-container>
+
 <!-- <input type="text" formControlName="productName" class="form-control" id="product_name" placeholder="Please Enter Product Name" style="display: none;"/>
 <input type="text"
 formControlName=""
@@ -26,8 +27,27 @@ placeholder="Please Enter Search Term" style="display: none;"
 /> -->
 </div>
 </div>
-      <br/>  
-  <div class="table-responsive-lg" #companytable #table>
+</div>
+      <br/>
+      <div class="container">
+        <!--<div class="row" *ngFor="let company of orangecompanies | async | fdaOrangeCompanyFilter: companyName">
+          <h5>{{company.companyName}}</h5>
+          <div class="col"><h5>FDA Recalls(3)</h5><br/>
+            <ul">
+              <li>{{company.fdaRecalls}}</li>
+            </ul>
+          </div>
+            <div class="col"><h5>FDA Warnings(2)</h5><br/>
+        </div> -->
+      <ul *ngIf="results">
+        <li *ngFor="let item of results | slice:0:3">
+          <!-- <a href="{{ result.latest }}" target="_blank"> -->
+            {{ item.name }}
+          <!-- </a> -->
+        </li>
+      </ul>
+      </div>
+  <!-- <div class="table-responsive-lg" #companytable #table>
       <table id="orange-companies" class="table table-hover table-striped">
       <thead>
       <tr>
@@ -45,4 +65,4 @@ placeholder="Please Enter Search Term" style="display: none;"
       </tbody>
       </table>
       </div>
-      </div>
+      </div> -->
