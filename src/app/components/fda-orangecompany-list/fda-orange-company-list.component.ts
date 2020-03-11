@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { FdaorangelistcompaniesService } from '../../services/fdaorangelistcompanies.service';
-import { Subject } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { map, mergeMap, take } from 'rxjs/operators';
+import { forkJoin, of } from 'rxjs';
 
 @Component({
   selector: 'app-fda-orangecompany-list',
@@ -8,20 +9,41 @@ import { Subject } from 'rxjs';
   styleUrls: ['./fda-orange-company-list.component.scss']
 })
 
-export class FDAOrangeListComponent {
-  items: Object;
-  searchTerm$ = new Subject<string>();
+export class FDAOrangeListComponent implements OnInit  {
+  companyName;
+  recalls;
+  warningletters;
+  item;
+  items: any= [];
 
-  constructor(private fdaorangelistcompaniesService: FdaorangelistcompaniesService) {
-    
-    this.fdaorangelistcompaniesService.search(this.searchTerm$)
-      .subscribe(data => {
-      this.items = data['items'];
-      });
+  constructor(private http: HttpClient) { 
+    this.recalls = [];
+    this.warningletters = [];
+    this.companyName= 'XXX';
   }
-    resetList () {
-     this.items = '';
-     (<HTMLFormElement>document.getElementById("company_name")).value ='';
-     (<HTMLFormElement>document.getElementById("not_found")).style.display = 'none';
-   }
+
+  ngOnInit() {
+    this.getRecalls();
+  }
+
+  getRecalls() {
+    this.http.get('http://www.mocky.io/v2/5e6936ff2f00001ef4d8b331/items?field_company_name=nestle-purina-petcare').pipe(
+      map( items => {
+        const item = items[0];
+        this.companyName = item.field_company_name;
+        return item;
+      }),
+      mergeMap( item => {
+        const recalls = this.http.get(`https://www.fda.gov/files/api/datatables/static/recalls-market-withdrawals.json?_=1583262918764?companyName=${item.field_company_name}`);
+        const warningletters = this.http.get(`https://www.fda.gov/files/api/datatables/static/warning-letters.json?_=1583261915747?companyName=${item.field_company_name}`);
+
+        return forkJoin([recalls, warningletters, of(item)]);
+      }),
+      take(1)
+    ).subscribe( result => {
+        this.recalls = result[0];
+        this.warningletters = result[1];
+        this.item = result[2]
+    });
+  }
 }

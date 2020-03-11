@@ -1,13 +1,45 @@
 <div class="container">
   <h5>Active Exposure Search</h5>
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-  <input type="text" [(ngModel)]="title" (keyup)="searchTerm$.next($event.target.value)" class="txtbox" id="company_name" placeholder="Please Enter Company Name" autocomplete="off"/>
-<div class="row">
+  <!-- <div class="form-group">
+    <input id="fda-companyName" name='selectType' type='radio' (change)="showCompanyNameTextbox()">
+    <label for="productName">&nbsp;FDA Orange Company</label>
+    <input id="productName" name='selectType' type='radio' (change)="showProductNameTextbox()">
+    <label for="productName">&nbsp;Product</label>
+    <input id="freeSearch" name='selectType' type='radio' (change)="showFreeSearchTextbox()">
+    <label for="freeSearch">&nbsp;Free Search</label>
+    <input id="ten-k" name='selectType' type='radio' (change)="showFreeSearchTextbox()">
+    <label for="ten-k">&nbsp;10K</label>
+  </div> -->
+<!--<div class="row">
 <div class="col-md-6">
-<ng-container *ngIf="( items | fdaOrangeCompanyFilter : title) as result">
-<p *ngIf="result.length === 0">No Result</p> 
-  <p *ngFor="let item of items | fdaOrangeCompanyFilter : title">
-    {{item.title}}
-  </p> 
+<ng-container>
+<input type="text" (keyup)="searchTerm$.next($event.target.value)" class="txtbox" id="company_name" placeholder="Please Enter Company Name" autocomplete="off"/>
+<p *ngIf="items.length === 0">No FDA Orange Company Match Found</p>
+<button type="button" (click)="resetList()" class="clear">Clear</button>
 </ng-container>
-</div></div></div>
+</div>
+</div>
+</div>-->
+      
+<div class="container">
+  <div class="row" *ngFor="let result of results">
+    <p>{{ result.field_company_name }}</p>
+    </div>
+  <div class="row" *ngFor="let result of results">
+    <div class="col"><p>FDA Recalls</p>
+      <ul>
+        <li>{{result.field_brand_name}}</li>
+      </ul>
+    </div>
+      <div class="col"><p>FDA Warnings</p>
+        <ul>
+        <li><a href="{{result.field_company_name_warning_lette}}" target="_blank">
+            {{result.field_company_name_warning_lette}}
+          </a>
+        </li>
+      </ul>
+  </div>
+</div>
+<!--<button type="button" class="clear">Load More</button>-->
+</div>

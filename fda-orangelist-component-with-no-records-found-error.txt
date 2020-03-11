@@ -1,0 +1,13 @@
+<div class="container">
+  <h5>Active Exposure Search</h5>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+  <input type="text" [(ngModel)]="title" (keyup)="searchTerm$.next($event.target.value)" class="txtbox" id="company_name" placeholder="Please Enter Company Name" autocomplete="off"/>
+<div class="row">
+<div class="col-md-6">
+<ng-container *ngIf="( items | fdaOrangeCompanyFilter : title) as result">
+<p *ngIf="result.length === 0">No Result</p> 
+  <p *ngFor="let item of items | fdaOrangeCompanyFilter : title">
+    {{item.title}}
+  </p> 
+</ng-container>
+</div></div></div>
