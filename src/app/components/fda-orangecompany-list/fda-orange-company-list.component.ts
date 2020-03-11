@@ -9,20 +9,19 @@ import { Subject } from 'rxjs';
 })
 
 export class FDAOrangeListComponent {
-  results: Object;
+  items: Object;
   searchTerm$ = new Subject<string>();
-  
+
   constructor(private fdaorangelistcompaniesService: FdaorangelistcompaniesService) {
     
     this.fdaorangelistcompaniesService.search(this.searchTerm$)
       .subscribe(data => {
-      this.results = data['results'];
+      this.items = data['items'];
       });
   }
-
     resetList () {
-      this.results = '';
-      (<HTMLFormElement>document.getElementById("company_name")).value ='';
-      (<HTMLFormElement>document.getElementById("not_found")).style.display = 'none';
-    }
+     this.items = '';
+     (<HTMLFormElement>document.getElementById("company_name")).value ='';
+     (<HTMLFormElement>document.getElementById("not_found")).style.display = 'none';
+   }
 }
